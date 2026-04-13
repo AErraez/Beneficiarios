@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta y Edición de Pólizas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        .error-row { background-color: #ffe6e6 !important; }
+        .error-text { color: #dc3545; font-size: 0.85em; display: block; margin-top: 5px; }
+    </style>
+</head>
+<body class="px-3">
+    <header class="text-center py-3">
+        <h1>Gestión de Pólizas</h1>
+    </header>
+
+    <main class="container-fluid py-3">
+        <ul class="nav nav-pills app-nav mb-4">
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Consulta Pólizas</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Excel a SISE</a></li>
+        </ul>
+
+        <div class="row py-3 align-items-end" style="background-color: #f8f9fa; border-radius: 10px; border: 1px solid #dee2e6; margin-bottom: 1rem;">
+            <div class="col-md-2">
+                <label for="sucursal">Sucursal:</label>
+                <select id="sucursal" class="form-select text-uppercase"><option value="">Seleccione...</option></select>
+            </div>
+            <div class="col-md-2">
+                <label for="ramo">Ramo:</label>
+                <select id="ramo" class="form-select text-uppercase" disabled><option value="">Seleccione...</option></select>
+            </div>
+            <div class="col-md-2">
+                <label for="poliza">Nº Póliza:</label>
+                <input type="text" id="poliza" class="form-control" disabled placeholder="Ej: 51234">
+            </div>
+            <div class="col-md-3">
+                <label for="vigencia">Vigencia:</label>
+                <select id="vigencia" class="form-select" disabled><option value="">Seleccione...</option></select>
+            </div>
+            <div class="col-md-3 text-end">
+                <button id="buscarBtn" class="grey-but w-100">Buscar</button>
+            </div>
+        </div>
+
+        <div id="controlesPostBusqueda" class="row py-2" style="display: none;">
+            <div class="col-md-4">
+                <label for="tipoMovimiento" class="fw-bold">Tipo de Movimiento:</label>
+                <select id="tipoMovimiento" class="form-select border-primary">
+                    <option value="endoso">Endoso beneficiario</option>
+                    <option value="modificacion">Modificación de suma</option>
+
+                </select>
+            </div>
+        </div>
+
+        <div id="resultado" class="row py-3" style="display: none;">
+            <div class="col-12 table-container">
+                <table class="table table-bordered table-hover bg-white" id="mainTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Item</th>
+                            <th>Ramo Pol</th>
+                            <th>Rubro</th>
+                            <th>Valor Movimiento</th>
+                            <th>Valor Asegurado</th>
+                            <th>Valor Endosado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaCuerpo">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="controlesGuardar" class="row py-3 align-items-end" style="display: none; background-color: #e9ecef; border-radius: 10px; padding: 15px;">
+            <div class="col-md-4">
+                <label for="numeroEndoso" class="fw-bold">Número de Endoso:</label>
+                <input type="text" id="numeroEndoso" class="form-control" placeholder="Ingrese el número de endoso">
+            </div>
+            <div class="col-md-8 text-end">
+                <button id="btnGuardar" class="grey-but px-5" disabled>Guardar</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="benef.js" type="module"></script>
+</body>
+</html>
